@@ -1,13 +1,19 @@
+import dao.WeatherStatsDAO;
 import database.DatabaseConnector;
+import entities.WeatherStats;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        EntityManager entityManager = DatabaseConnector.getInstance().getConnection();
 
+
+        WeatherStatsDAO weatherStatsDAO = new WeatherStatsDAO();
+        List<WeatherStats> weather = weatherStatsDAO.getWeatherStatsByCityName("Pabianice");
+        System.out.println(weather);
     }
 }

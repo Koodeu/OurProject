@@ -1,9 +1,13 @@
 package entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
+@Data
 @Entity
 @Table(name = "weatherstats")
 public class WeatherStats {
@@ -13,7 +17,7 @@ public class WeatherStats {
     private  int id;
 
     @Column(name = "date")
-    private Date date;
+    private LocalDate date;
 
     @Column(name="time")
     private LocalTime time;
