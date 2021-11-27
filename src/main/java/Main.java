@@ -33,9 +33,7 @@ public class Main {
 
         City city = cityDAO.getCityByCityName(weather.name);
         if (city == null) {
-            city = City.builder().cityName(weather.name).build();
-
-            city = cityDAO.create(city); // dopisać metodę w CityDao która dopisuje city i zwraca
+            city = cityDAO.create(weather.name);
         }
 
         WeatherStats weathertats = WeatherStats.builder()

@@ -44,6 +44,17 @@ public class CityDAO {
         return true;
     }
 
+    public City create(String cityName){
+        EntityManager entityManager = DatabaseConnector.getInstance().getConnection();
+        City city  = City.builder()
+                .cityName(cityName)
+                .build();
+        entityManager.getTransaction().begin();
+        City newCity = entityManager.merge(city);
+        entityManager.getTransaction().commit();
+        return newCity;
+    }
+
 
 
 }
