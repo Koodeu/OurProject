@@ -1,8 +1,11 @@
 package dto;
 
+import lombok.Builder;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Builder
 public class WeatherStatsDTO {
 
     private int id;

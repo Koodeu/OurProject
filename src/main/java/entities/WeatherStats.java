@@ -1,6 +1,9 @@
 package entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -8,6 +11,9 @@ import java.time.LocalTime;
 import java.util.Date;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "weatherstats")
 public class WeatherStats {
@@ -43,6 +49,9 @@ public class WeatherStats {
     @Column(name ="wind_direction")
     private int windDirection;
 
+
+//    @Column(name = "city_id")
+//    private int cityId;
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
