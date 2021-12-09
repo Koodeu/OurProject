@@ -12,6 +12,8 @@ import retrofit2.Response;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class Main {
@@ -19,7 +21,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Call<Weather> call = RetrofitConfig.getApi().getWeatherDataByCityName("Warszawa", "metric", RetrofitConfig.API_KEY);
+        Call<Weather> call = RetrofitConfig.getApi().getWeatherDataByCityName("Płock    ", "metric", RetrofitConfig.API_KEY);
         Response<Weather> execute = null;
         try {
             execute = call.execute();
@@ -33,10 +35,13 @@ public class Main {
 
         City city = cityDAO.getCityByCityName(weather.name);
         if (city == null) {
-            city = cityDAO.create(weather.name);
+            city = cityDAO.create(weather.name); // dopisać metodę w CityDao która dopisuje city i zwraca
         }
 
+
         WeatherStats weathertats = WeatherStats.builder()
+                .date(LocalDate.now())
+                .time(LocalTime.now())
                 .humidity(weather.getMain().getHumidity())
                 .currentPressure(weather.getMain().getCurrentPressure())
                 .maxTemp(weather.getMain().getMaxTemp())
